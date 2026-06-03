@@ -1,4 +1,4 @@
- # Smart Crop Recommendation System using Machine Learning
+# Smart Crop Recommendation System using Machine Learning
 
 An end-to-end Machine Learning project that recommends the optimal crop to cultivate based on specific soil nutrition and climatic parameters. This tool aims to assist farmers and agricultural engineers in maximizing yield by optimizing crop selection based on precise environmental data.
 
@@ -18,8 +18,19 @@ The dataset contains **2,200 entries** and **8 columns**. It features 22 unique 
 * **ph**: pH value of the soil (Float)
 * **rainfall**: Rainfall in millimeters (Float)
 
-### Target Variable:
-* **label**: The recommended type of crop (Label-encoded into integer values `0` through `21` for modeling purposes).
+### 🏷️ Target Crop Mapping
+The categorical crop labels are encoded into integer values (`0` through `21`) according to the following index mapping:
+
+| Index | Crop Name | Index | Crop Name | Index | Crop Name |
+| :---: | :--- | :---: | :--- | :---: | :--- |
+| **0** | Apple | **8** | Jute | **16** | Orange |
+| **1** | Banana | **9** | Kidney Beans | **17** | Papaya |
+| **2** | Blackgram | **10** | Lentil | **18** | Pigeonpeas |
+| **3** | Chickpea | **11** | Maize | **19** | Pomegranate |
+| **4** | Coconut | **12** | Mango | **20** | Rice |
+| **5** | Coffee | **13** | Mothbeans | **21** | Watermelon |
+| **6** | Cotton | **14** | Mungbean | | |
+| **7** | Grapes | **15** | Muskmelon | | |
 
 ---
 
@@ -37,21 +48,22 @@ Due to strong feature separability in the data, the trained models achieved exce
 | **K-Nearest Neighbors (KNN)** | **95.68%** |
 
 ### Model Accuracy Comparison Graph
-![Comparison of Model Accuracies](images/img.png)
-
+ ![Comparison of Model Accuracies](images/img.png)
+====================================================
+ 
 ### Deep-Dive Performance (AdaBoost / Gaussian NB)
 Both AdaBoost and Naive Bayes successfully classified **438 out of 440 samples** correctly, achieving the top overall accuracy. 
 
-While 20 out of the 22 crop classes achieved perfect 1.00 scores across all metrics, the model revealed a minor boundary overlap between Class 8 and Class 20:
+While 20 out of the 22 crop classes achieved perfect 1.00 scores across all metrics, the model revealed a minor boundary overlap between **Jute (Class 8)** and **Rice (Class 20)**:
 
 | Crop Class | Precision | Recall | F1-Score | Support |
 | :--- | :---: | :---: | :---: | :---: |
-| **Class 8** | 0.92 | 1.00 | 0.96 | 23 |
-| **Class 20** | 1.00 | 0.89 | 0.94 | 19 |
+| **Class 8 (Jute)** | 0.92 | 1.00 | 0.96 | 23 |
+| **Class 20 (Rice)** | 1.00 | 0.89 | 0.94 | 19 |
 | **Macro Average** | **1.00** | **1.00** | **1.00** | **440** |
 | **Weighted Average** | **1.00** | **1.00** | **1.00** | **440** |
 
-> 🔍 **Key Analytical Insight:** The model missed exactly 2 samples of **Class 20**, mistakenly predicting them as **Class 8** (causing Class 20's recall to drop to 0.89, and Class 8's precision to drop to 0.92). In agricultural terms, this indicates that these two specific crop varieties share nearly identical soil nutrient tolerances and climatic thresholds, causing a minor overlap at the decision boundary.
+> 🔍 **Key Analytical Insight:** The model missed exactly 2 samples of **Rice**, mistakenly predicting them as **Jute** (causing Rice's recall to drop to 0.89, and Jute's precision to drop to 0.92). In agricultural terms, this makes complete sense: both jute and rice thrive under incredibly high tropical rainfall and saturated soil moisture thresholds, causing a minor overlap at the extreme boundaries of their feature spaces.
 
 ---
 
