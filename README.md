@@ -48,9 +48,14 @@ Due to strong feature separability in the data, the trained models achieved exce
 | **K-Nearest Neighbors (KNN)** | **95.68%** |
 
 ### Model Accuracy Comparison Graph
+<<<<<<< HEAD
  ![Comparison of Model Accuracies](images/img.png)
 ====================================================
  
+=======
+![Comparison of Model Accuracies](images/img.png)
+
+>>>>>>> 3303aea (update on README)
 ### Deep-Dive Performance (AdaBoost / Gaussian NB)
 Both AdaBoost and Naive Bayes successfully classified **438 out of 440 samples** correctly, achieving the top overall accuracy. 
 
